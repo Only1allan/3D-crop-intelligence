@@ -1,0 +1,101 @@
+# Evaluation tasks. Each runs the full agent (gather -> rules -> draft -> gate -> finalize) on a fresh,
+# date-pinned copy of the fixture, applies the scripted officer decision, and checks the result.
+# Checks are deliberately about *behaviour the brief cares about*: right action, cited numbers, nothing sent
+# without a named officer, fail-closed on missing or stale data.
+today: "2026-09-27"
+tasks:
+  - id: T01
+    title: Dry plot at tuber initiation, 21.5 mm forecast → HOLD irrigation (not irrigate)
+    plot: B2
+    decision: { officer: "Amina Wekesa", decision: approve }
+    expect: { outcome: approved, action: hold, primaryRuleId: potato.irrigation.hold_for_forecast_rain,
+              citeFields: [soil.soilMoisture, rainfall.forecast3Mm], dispatch: true, channel: sms }
+
+  - id: T02
+    title: Same plot, no rainfall signal at all → IRRIGATE now (forecast cannot be assumed)
+    plot: B2
+    setup: [{ op: delete_signals, farmId: F-001 }, { op: set_env, key: AGRITWIN_FAIL_WEATHER, value: "1" }, { op: set_env, key: AGRITWIN_LIVE_WEATHER, value: "1" }]
+    decision: { officer: "Amina Wekesa", decision: approve }
+    expect: { outcome: approved, action: irrigate, primaryRuleId: potato.irrigation.dry_at_sensitive_stage,
+              citeFields: [soil.soilMoisture], dispatch: true, recoveredErrors: 1 }
+
+  - id: T03
+    title: Blight weather (RH 92%, 14.2 mm) + zone alert → SPRAY; officer rejects with a reason → nothing sent
+    plot: A3
+    decision: { officer: "Amina Wekesa", decision: reject, reason: "Farmer sprayed yesterday during my visit" }
+    expect: { outcome: rejected, action: spray, primaryRuleId: potato.blight.spray_window,
+              citeFields: [atmosphere.relativeHumidity, atmosphere.precipitation], dispatch: false }
+
+  - id: T04
+    title: Healthy plot but zone late-blight alert → SCOUT, not spray
+    plot: A1
+    decision: { officer: "Joseph Kariuki", decision: approve }
+    expect: { outcome: approved, action: scout, primaryRuleId: potato.blight.zone_alert_scout, citeAnyPrefix: pestAlert., dispatch: true }
+
+  - id: T05
+    title: Healthy plot, alerts expired → NO ACTION (the agent must not invent work)
+    plot: A1
+    setup: [{ op: expire_alerts }]
+    decision: { officer: "Amina Wekesa", decision: approve }
+    expect: { outcome: approved, action: none, primaryRuleId: potato.in_range }
+
+  - id: T06
+    title: Probe offline 3 days → REFUSE to draft, flag the plot instead
+    plot: B3
+    decision: none
+    expect: { outcome: no_advisory, flagged: true, advisoryCount: 0 }
+
+  - id: T07
+    title: Maturing plot; maize armyworm alert and late-blight alert are both NOT applicable → HARVEST plan, alerts cited as n/a
+    plot: B1
+    decision: { officer: "Amina Wekesa", decision: approve }
+    expect: { outcome: approved, action: harvest, findingsInclude: [potato.pest.fall_armyworm.not_applicable, potato.pest.late_blight.not_applicable],
+              dispatch: true, channel: visit }
+
+  - id: T08
+    title: Same zone rainfall as T01, different plot state (A2, moisture 24%) → different action (scout), lime noted
+    plot: A2
+    decision: { officer: "Amina Wekesa", decision: approve }
+    expect: { outcome: approved, action: scout, findingsInclude: [potato.soil.acidic, potato.soil.nutrients_low], dispatch: true, channel: ussd }
+
+  - id: T09
+    title: New farm, unplanted plot, weather API down → agent tries ingestion, fails, and REFUSES to advise planting
+    plot: "@F2P1"
+    setup:
+      - { op: register_farm, name: "Kipipiri Smallholders", region: "Kipipiri", crop: potato, lat: -0.45, lon: 36.6,
+          plots: [{ displayName: "Upper field", householdName: "Jane Muthoni", contactMethod: ussd, areaHa: 0.8, variety: Shangi }] }
+      - { op: ingest_readings, farmId: "@F2", readings: [{ plotId: "@F2P1", lastUpdateTime: "2026-09-27T07:00:00Z", soilPH: 6.0,
+            atmosphere: { ambientTemperature: 21, relativeHumidity: 70, precipitation: 0 },
+            soil: { soilMoisture: 20, soilTemperature: 18, soilEC: 0.3, soilOrganicCarbon: 2.0, nitrogenLevel: 0.2, phosphorusLevel: 15, potassiumLevel: 0.5, aluminiumLevel: 0.3, soilTextureClass: loam },
+            crop: { ndvi: 0.2, evi: 0.15, cloudCover: 10, growthStage: unplanted, daysAfterPlanting: 0, accumulatedGDD: 0 } }] }
+      - { op: set_env, key: AGRITWIN_FAIL_WEATHER, value: "1" }
+      - { op: set_env, key: AGRITWIN_LIVE_WEATHER, value: "1" }
+    decision: none
+    expect: { outcome: no_advisory, flagged: true, toolFailed: ingest_weather }
+
+  - id: T10
+    title: Same new farm with rainfall copied from the zone → season onset confirmed → PLANT
+    plot: "@F2P1"
+    setup:
+      - { op: register_farm, name: "Kipipiri Smallholders", region: "Kipipiri", crop: potato, lat: -0.45, lon: 36.6,
+          plots: [{ displayName: "Upper field", householdName: "Jane Muthoni", contactMethod: ussd, areaHa: 0.8, variety: Shangi }] }
+      - { op: ingest_readings, farmId: "@F2", readings: [{ plotId: "@F2P1", lastUpdateTime: "2026-09-27T07:00:00Z", soilPH: 6.0,
+            atmosphere: { ambientTemperature: 21, relativeHumidity: 70, precipitation: 0 },
+            soil: { soilMoisture: 20, soilTemperature: 18, soilEC: 0.3, soilOrganicCarbon: 2.0, nitrogenLevel: 0.2, phosphorusLevel: 15, potassiumLevel: 0.5, aluminiumLevel: 0.3, soilTextureClass: loam },
+            crop: { ndvi: 0.2, evi: 0.15, cloudCover: 10, growthStage: unplanted, daysAfterPlanting: 0, accumulatedGDD: 0 } }] }
+      - { op: copy_signals, fromFarmId: F-001, toFarmId: "@F2" }
+    decision: { officer: "Joseph Kariuki", decision: approve }
+    expect: { outcome: approved, action: plant, primaryRuleId: potato.planting.onset_confirmed,
+              citeFields: [rainfall.last7Mm, cropCalendar.plantWindows], dispatch: true, channel: ussd }
+
+  - id: T11
+    title: Unknown person tries to approve → REFUSED and logged; the draft stays a draft
+    plot: B2
+    decision: { officer: "Someone Else", decision: approve, expectRefusal: true }
+    expect: { outcome: draft, dispatch: false, auditHasFailed: record_officer_decision }
+
+  - id: T12
+    title: Officer rejects without a reason → REFUSED; then rejects with a reason → logged, nothing sent
+    plot: A3
+    decision: { officer: "Amina Wekesa", decision: reject, expectRefusal: true, then: { officer: "Amina Wekesa", decision: reject, reason: "Will visit first" } }
+    expect: { outcome: rejected, dispatch: false, auditHasFailed: record_officer_decision }

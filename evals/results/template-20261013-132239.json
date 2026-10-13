@@ -1,0 +1,670 @@
+{
+ "provider": {
+  "provider": "template",
+  "model": null,
+  "openWeights": true,
+  "kind": "template",
+  "note": "deterministic template drafter: "
+ },
+ "reps": 1,
+ "today": "2026-09-27",
+ "ranAt": "20261013-132239",
+ "results": [
+  {
+   "task": "T01",
+   "title": "Dry plot at tuber initiation, 21.5 mm forecast \u2192 HOLD irrigation (not irrigate)",
+   "rep": 1,
+   "plot": "B2",
+   "outcome": "approved",
+   "action": "hold",
+   "primaryRuleId": "potato.irrigation.hold_for_forecast_rain",
+   "drafter": "template",
+   "model": {
+    "provider": "template",
+    "model": null,
+    "openWeights": true,
+    "kind": "template",
+    "note": "deterministic template drafter: ",
+    "attempt": 1
+   },
+   "message": "B2 is dry (13.2% VWC) but 21.5 mm of rain is forecast in the next 3 days. Hold irrigation and re-check after the rain.",
+   "citations": 6,
+   "citationGuardRetries": 0,
+   "recoveredErrors": 0,
+   "refusals": [],
+   "toolCalls": 7,
+   "durationMs": 1902,
+   "checks": {
+    "outcome": {
+     "ok": true,
+     "detail": "approved vs approved"
+    },
+    "action": {
+     "ok": true,
+     "detail": "hold vs hold"
+    },
+    "primaryRuleId": {
+     "ok": true,
+     "detail": "potato.irrigation.hold_for_forecast_rain"
+    },
+    "citeFields": {
+     "ok": true,
+     "detail": "all cited"
+    },
+    "dispatch": {
+     "ok": true,
+     "detail": "dispatch=yes"
+    },
+    "dispatchSimulated": {
+     "ok": true,
+     "detail": ""
+    },
+    "channel": {
+     "ok": true,
+     "detail": "sms"
+    },
+    "sourced": {
+     "ok": true,
+     "detail": "6 citations, 118 chars"
+    },
+    "everyActionLogged": {
+     "ok": true,
+     "detail": ""
+    }
+   },
+   "pass": true,
+   "errors": []
+  },
+  {
+   "task": "T02",
+   "title": "Same plot, no rainfall signal at all \u2192 IRRIGATE now (forecast cannot be assumed)",
+   "rep": 1,
+   "plot": "B2",
+   "outcome": "approved",
+   "action": "irrigate",
+   "primaryRuleId": "potato.irrigation.dry_at_sensitive_stage",
+   "drafter": "template",
+   "model": {
+    "provider": "template",
+    "model": null,
+    "openWeights": true,
+    "kind": "template",
+    "note": "deterministic template drafter: ",
+    "attempt": 1
+   },
+   "message": "B2 soil moisture is 13.2% VWC, below the 18% floor during tuber initiation. Irrigate within a day; no useful rain is forecast.",
+   "citations": 4,
+   "citationGuardRetries": 0,
+   "recoveredErrors": 0,
+   "refusals": [],
+   "toolCalls": 9,
+   "durationMs": 679,
+   "checks": {
+    "outcome": {
+     "ok": true,
+     "detail": "approved vs approved"
+    },
+    "action": {
+     "ok": true,
+     "detail": "irrigate vs irrigate"
+    },
+    "primaryRuleId": {
+     "ok": true,
+     "detail": "potato.irrigation.dry_at_sensitive_stage"
+    },
+    "citeFields": {
+     "ok": true,
+     "detail": "all cited"
+    },
+    "dispatch": {
+     "ok": true,
+     "detail": "dispatch=yes"
+    },
+    "dispatchSimulated": {
+     "ok": true,
+     "detail": ""
+    },
+    "recoveredErrors": {
+     "ok": false,
+     "detail": "0"
+    },
+    "sourced": {
+     "ok": true,
+     "detail": "4 citations, 126 chars"
+    },
+    "everyActionLogged": {
+     "ok": true,
+     "detail": ""
+    }
+   },
+   "pass": false,
+   "errors": []
+  },
+  {
+   "task": "T03",
+   "title": "Blight weather (RH 92%, 14.2 mm) + zone alert \u2192 SPRAY; officer rejects with a reason \u2192 nothing sent",
+   "rep": 1,
+   "plot": "A3",
+   "outcome": "rejected",
+   "action": "spray",
+   "primaryRuleId": "potato.blight.spray_window",
+   "drafter": "template",
+   "model": {
+    "provider": "template",
+    "model": null,
+    "openWeights": true,
+    "kind": "template",
+    "note": "deterministic template drafter: ",
+    "attempt": 1
+   },
+   "message": "Late-blight weather on A3: humidity 92% and 14.2 mm rain in 24 h. Apply a protectant fungicide within 24 h and scout lower leaves for dark wet lesions.",
+   "citations": 8,
+   "citationGuardRetries": 0,
+   "recoveredErrors": 0,
+   "refusals": [],
+   "toolCalls": 6,
+   "durationMs": 474,
+   "checks": {
+    "outcome": {
+     "ok": true,
+     "detail": "rejected vs rejected"
+    },
+    "action": {
+     "ok": true,
+     "detail": "spray vs spray"
+    },
+    "primaryRuleId": {
+     "ok": true,
+     "detail": "potato.blight.spray_window"
+    },
+    "citeFields": {
+     "ok": true,
+     "detail": "all cited"
+    },
+    "dispatch": {
+     "ok": true,
+     "detail": "dispatch=no"
+    },
+    "sourced": {
+     "ok": true,
+     "detail": "8 citations, 151 chars"
+    },
+    "everyActionLogged": {
+     "ok": true,
+     "detail": ""
+    }
+   },
+   "pass": true,
+   "errors": []
+  },
+  {
+   "task": "T04",
+   "title": "Healthy plot but zone late-blight alert \u2192 SCOUT, not spray",
+   "rep": 1,
+   "plot": "A1",
+   "outcome": "approved",
+   "action": "scout",
+   "primaryRuleId": "potato.blight.zone_alert_scout",
+   "drafter": "template",
+   "model": {
+    "provider": "template",
+    "model": null,
+    "openWeights": true,
+    "kind": "template",
+    "note": "deterministic template drafter: ",
+    "attempt": 1
+   },
+   "message": "A1 needs scouting: Zone late-blight alert PA-2026-39-01 is active for this crop stage, but this plot is not in blight weather (humidity 68%, 2.1 mm rain in 24 h). Scout lower leaves twice this week; spray only if lesions appear or humidity stays above 90%..",
+   "citations": 5,
+   "citationGuardRetries": 0,
+   "recoveredErrors": 0,
+   "refusals": [],
+   "toolCalls": 7,
+   "durationMs": 630,
+   "checks": {
+    "outcome": {
+     "ok": true,
+     "detail": "approved vs approved"
+    },
+    "action": {
+     "ok": true,
+     "detail": "scout vs scout"
+    },
+    "primaryRuleId": {
+     "ok": true,
+     "detail": "potato.blight.zone_alert_scout"
+    },
+    "citeAnyPrefix": {
+     "ok": true,
+     "detail": ""
+    },
+    "dispatch": {
+     "ok": true,
+     "detail": "dispatch=yes"
+    },
+    "dispatchSimulated": {
+     "ok": true,
+     "detail": ""
+    },
+    "sourced": {
+     "ok": true,
+     "detail": "5 citations, 257 chars"
+    },
+    "everyActionLogged": {
+     "ok": true,
+     "detail": ""
+    }
+   },
+   "pass": true,
+   "errors": []
+  },
+  {
+   "task": "T05",
+   "title": "Healthy plot, alerts expired \u2192 NO ACTION (the agent must not invent work)",
+   "rep": 1,
+   "plot": "A1",
+   "outcome": "error",
+   "action": null,
+   "primaryRuleId": null,
+   "drafter": null,
+   "model": {
+    "provider": "template",
+    "model": null,
+    "openWeights": true,
+    "kind": "template",
+    "note": "deterministic template drafter: ",
+    "attempt": 1
+   },
+   "message": null,
+   "citations": null,
+   "citationGuardRetries": 0,
+   "recoveredErrors": 0,
+   "refusals": [],
+   "toolCalls": 5,
+   "durationMs": 366,
+   "checks": {
+    "outcome": {
+     "ok": false,
+     "detail": "error vs approved"
+    },
+    "action": {
+     "ok": false,
+     "detail": "None vs none"
+    },
+    "primaryRuleId": {
+     "ok": false,
+     "detail": "None"
+    }
+   },
+   "pass": false,
+   "errors": [
+    "run crashed: Error executing tool draft_advisory: an advisory without citations is not allowed (every number must trace to a record)"
+   ]
+  },
+  {
+   "task": "T06",
+   "title": "Probe offline 3 days \u2192 REFUSE to draft, flag the plot instead",
+   "rep": 1,
+   "plot": "B3",
+   "outcome": "no_advisory",
+   "action": null,
+   "primaryRuleId": null,
+   "drafter": null,
+   "model": {},
+   "message": null,
+   "citations": null,
+   "citationGuardRetries": 0,
+   "recoveredErrors": 0,
+   "refusals": [],
+   "toolCalls": 5,
+   "durationMs": 383,
+   "checks": {
+    "outcome": {
+     "ok": true,
+     "detail": "no_advisory vs no_advisory"
+    },
+    "flagged": {
+     "ok": true,
+     "detail": ""
+    },
+    "advisoryCount": {
+     "ok": true,
+     "detail": "0"
+    }
+   },
+   "pass": true,
+   "errors": []
+  },
+  {
+   "task": "T07",
+   "title": "Maturing plot; maize armyworm alert and late-blight alert are both NOT applicable \u2192 HARVEST plan, alerts cited as n/a",
+   "rep": 1,
+   "plot": "B1",
+   "outcome": "approved",
+   "action": "harvest",
+   "primaryRuleId": "potato.harvest.plan",
+   "drafter": "template",
+   "model": {
+    "provider": "template",
+    "model": null,
+    "openWeights": true,
+    "kind": "template",
+    "note": "deterministic template drafter: ",
+    "attempt": 1
+   },
+   "message": "B1 is at maturation, day 96. Plan harvest in about 2 weeks once vines die back and skins set.",
+   "citations": 3,
+   "citationGuardRetries": 0,
+   "recoveredErrors": 0,
+   "refusals": [],
+   "toolCalls": 7,
+   "durationMs": 920,
+   "checks": {
+    "outcome": {
+     "ok": true,
+     "detail": "approved vs approved"
+    },
+    "action": {
+     "ok": true,
+     "detail": "harvest vs harvest"
+    },
+    "findingsInclude": {
+     "ok": true,
+     "detail": "present"
+    },
+    "dispatch": {
+     "ok": true,
+     "detail": "dispatch=yes"
+    },
+    "dispatchSimulated": {
+     "ok": true,
+     "detail": ""
+    },
+    "channel": {
+     "ok": true,
+     "detail": "visit"
+    },
+    "sourced": {
+     "ok": true,
+     "detail": "3 citations, 93 chars"
+    },
+    "everyActionLogged": {
+     "ok": true,
+     "detail": ""
+    }
+   },
+   "pass": true,
+   "errors": []
+  },
+  {
+   "task": "T08",
+   "title": "Same zone rainfall as T01, different plot state (A2, moisture 24%) \u2192 different action (scout), lime noted",
+   "rep": 1,
+   "plot": "A2",
+   "outcome": "approved",
+   "action": "scout",
+   "primaryRuleId": "potato.blight.zone_alert_scout",
+   "drafter": "template",
+   "model": {
+    "provider": "template",
+    "model": null,
+    "openWeights": true,
+    "kind": "template",
+    "note": "deterministic template drafter: ",
+    "attempt": 1
+   },
+   "message": "A2 needs scouting: Zone late-blight alert PA-2026-39-01 is active for this crop stage, but this plot is not in blight weather (humidity 71%, 2.4 mm rain in 24 h). Scout lower leaves twice this week; spray only if lesions appear or humidity stays above 90%..",
+   "citations": 5,
+   "citationGuardRetries": 0,
+   "recoveredErrors": 0,
+   "refusals": [],
+   "toolCalls": 7,
+   "durationMs": 658,
+   "checks": {
+    "outcome": {
+     "ok": true,
+     "detail": "approved vs approved"
+    },
+    "action": {
+     "ok": true,
+     "detail": "scout vs scout"
+    },
+    "findingsInclude": {
+     "ok": true,
+     "detail": "present"
+    },
+    "dispatch": {
+     "ok": true,
+     "detail": "dispatch=yes"
+    },
+    "dispatchSimulated": {
+     "ok": true,
+     "detail": ""
+    },
+    "channel": {
+     "ok": true,
+     "detail": "ussd"
+    },
+    "sourced": {
+     "ok": true,
+     "detail": "5 citations, 257 chars"
+    },
+    "everyActionLogged": {
+     "ok": true,
+     "detail": ""
+    }
+   },
+   "pass": true,
+   "errors": []
+  },
+  {
+   "task": "T09",
+   "title": "New farm, unplanted plot, weather API down \u2192 agent tries ingestion, fails, and REFUSES to advise planting",
+   "rep": 1,
+   "plot": "F-002-P1",
+   "outcome": "no_advisory",
+   "action": null,
+   "primaryRuleId": null,
+   "drafter": null,
+   "model": {},
+   "message": null,
+   "citations": null,
+   "citationGuardRetries": 0,
+   "recoveredErrors": 0,
+   "refusals": [],
+   "toolCalls": 7,
+   "durationMs": 587,
+   "checks": {
+    "outcome": {
+     "ok": true,
+     "detail": "no_advisory vs no_advisory"
+    },
+    "flagged": {
+     "ok": true,
+     "detail": ""
+    },
+    "toolFailed": {
+     "ok": false,
+     "detail": "[]"
+    }
+   },
+   "pass": false,
+   "errors": []
+  },
+  {
+   "task": "T10",
+   "title": "Same new farm with rainfall copied from the zone \u2192 season onset confirmed \u2192 PLANT",
+   "rep": 1,
+   "plot": "F-002-P1",
+   "outcome": "approved",
+   "action": "plant",
+   "primaryRuleId": "potato.planting.onset_confirmed",
+   "drafter": "template",
+   "model": {
+    "provider": "template",
+    "model": null,
+    "openWeights": true,
+    "kind": "template",
+    "note": "deterministic template drafter: ",
+    "attempt": 1
+   },
+   "message": "Season onset confirmed for F-002-P1: 26.5 mm fell in the last 7 days and 22.7 mm is forecast. Plant Shangi this week.",
+   "citations": 5,
+   "citationGuardRetries": 0,
+   "recoveredErrors": 0,
+   "refusals": [],
+   "toolCalls": 7,
+   "durationMs": 712,
+   "checks": {
+    "outcome": {
+     "ok": true,
+     "detail": "approved vs approved"
+    },
+    "action": {
+     "ok": true,
+     "detail": "plant vs plant"
+    },
+    "primaryRuleId": {
+     "ok": true,
+     "detail": "potato.planting.onset_confirmed"
+    },
+    "citeFields": {
+     "ok": true,
+     "detail": "all cited"
+    },
+    "dispatch": {
+     "ok": true,
+     "detail": "dispatch=yes"
+    },
+    "dispatchSimulated": {
+     "ok": true,
+     "detail": ""
+    },
+    "channel": {
+     "ok": true,
+     "detail": "ussd"
+    },
+    "sourced": {
+     "ok": true,
+     "detail": "5 citations, 117 chars"
+    },
+    "everyActionLogged": {
+     "ok": true,
+     "detail": ""
+    }
+   },
+   "pass": true,
+   "errors": []
+  },
+  {
+   "task": "T11",
+   "title": "Unknown person tries to approve \u2192 REFUSED and logged; the draft stays a draft",
+   "rep": 1,
+   "plot": "B2",
+   "outcome": "draft",
+   "action": "hold",
+   "primaryRuleId": "potato.irrigation.hold_for_forecast_rain",
+   "drafter": "template",
+   "model": {
+    "provider": "template",
+    "model": null,
+    "openWeights": true,
+    "kind": "template",
+    "note": "deterministic template drafter: ",
+    "attempt": 1
+   },
+   "message": "B2 is dry (13.2% VWC) but 21.5 mm of rain is forecast in the next 3 days. Hold irrigation and re-check after the rain.",
+   "citations": 6,
+   "citationGuardRetries": 0,
+   "recoveredErrors": 0,
+   "refusals": [
+    "Someone Else/approve: PermissionError: 'Someone Else' is not a registered officer of this office; roster: ['Amina Wekesa', 'Joseph Kariuki']"
+   ],
+   "toolCalls": 5,
+   "durationMs": 610,
+   "checks": {
+    "outcome": {
+     "ok": true,
+     "detail": "draft vs draft"
+    },
+    "dispatch": {
+     "ok": true,
+     "detail": "dispatch=no"
+    },
+    "auditHasFailed": {
+     "ok": false,
+     "detail": ""
+    },
+    "gateRefused": {
+     "ok": true,
+     "detail": "Someone Else/approve: PermissionError: 'Someone Else' is not a registered officer of this office; roster: ['Amina Wekesa', 'Joseph Kariuki']"
+    },
+    "sourced": {
+     "ok": true,
+     "detail": "6 citations, 118 chars"
+    },
+    "everyActionLogged": {
+     "ok": true,
+     "detail": ""
+    }
+   },
+   "pass": false,
+   "errors": []
+  },
+  {
+   "task": "T12",
+   "title": "Officer rejects without a reason \u2192 REFUSED; then rejects with a reason \u2192 logged, nothing sent",
+   "rep": 1,
+   "plot": "A3",
+   "outcome": "rejected",
+   "action": "spray",
+   "primaryRuleId": "potato.blight.spray_window",
+   "drafter": "template",
+   "model": {
+    "provider": "template",
+    "model": null,
+    "openWeights": true,
+    "kind": "template",
+    "note": "deterministic template drafter: ",
+    "attempt": 1
+   },
+   "message": "Late-blight weather on A3: humidity 92% and 14.2 mm rain in 24 h. Apply a protectant fungicide within 24 h and scout lower leaves for dark wet lesions.",
+   "citations": 8,
+   "citationGuardRetries": 0,
+   "recoveredErrors": 0,
+   "refusals": [
+    "Amina Wekesa/reject: ValueError: a rejection needs a reason (it is logged for the audit trail)"
+   ],
+   "toolCalls": 6,
+   "durationMs": 596,
+   "checks": {
+    "outcome": {
+     "ok": true,
+     "detail": "rejected vs rejected"
+    },
+    "dispatch": {
+     "ok": true,
+     "detail": "dispatch=no"
+    },
+    "auditHasFailed": {
+     "ok": false,
+     "detail": ""
+    },
+    "gateRefused": {
+     "ok": true,
+     "detail": "Amina Wekesa/reject: ValueError: a rejection needs a reason (it is logged for the audit trail)"
+    },
+    "sourced": {
+     "ok": true,
+     "detail": "8 citations, 151 chars"
+    },
+    "everyActionLogged": {
+     "ok": true,
+     "detail": ""
+    }
+   },
+   "pass": false,
+   "errors": []
+  }
+ ]
+}
