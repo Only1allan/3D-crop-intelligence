@@ -1,0 +1,16 @@
+.plot-label {
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+  padding: 6px 12px; border-radius: 999px; font: 500 12.5px/1 'Poppins', sans-serif; color: #fff;
+  background: rgba(0,0,0,.72); border: 1px solid rgba(255,255,255,.16); backdrop-filter: blur(8px);
+  transition: transform .3s cubic-bezier(.22,1,.36,1), opacity .3s, border-color .3s;
+  transform: translateY(0) scale(.92); user-select: none;
+}
+.plot-label b { font-weight: 700; }
+.plot-label .pl-name { color: rgba(255,255,255,.72); }
+.plot-label .pl-extra { display: block; color: #bef264; font-size: 11.5px; padding-left: 8px; margin-left: 2px; border-left: 1px solid rgba(255,255,255,.2); }
+.plot-label.hov { transform: scale(1.02); border-color: #fff; }
+.plot-label.sel { transform: scale(1.08); border-color: #bef264; box-shadow: 0 0 30px rgba(190,242,100,.35); }
+.plot-label.dim { opacity: .45; }
+.plot-label.warning { border-color: rgba(251,191,36,.55); }
+.plot-label.critical { border-color: rgba(248,113,113,.8); }
+.plot-label.sel.warning, .plot-label.sel.critical { border-color: #bef264; }
