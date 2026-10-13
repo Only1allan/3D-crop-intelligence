@@ -1,0 +1,44 @@
+{
+  "_note": "Synthetic regional pest bulletin, shaped like a county plant-health alert. dayOffset is relative to the fixture 'today' and is shifted to the real date at seed time.",
+  "alerts": [
+    {
+      "alertId": "PA-2026-39-01",
+      "agroZoneId": "KE-HL-UPPER",
+      "pest": "late_blight",
+      "crop": "potato",
+      "severity": "high",
+      "issuedDayOffset": -1,
+      "expiresDayOffset": 9,
+      "stages": ["emergence", "tuber_initiation", "tuber_bulking"],
+      "summary": "Late blight (Phytophthora infestans) confirmed on three farms in the upper zone after a week of wet mornings; protectant sprays advised on crops before maturation.",
+      "source": "County plant-health bulletin wk39 (synthetic)",
+      "recommendedAction": "spray"
+    },
+    {
+      "alertId": "PA-2026-39-02",
+      "agroZoneId": "KE-HL-UPPER",
+      "pest": "fall_armyworm",
+      "crop": "maize",
+      "severity": "moderate",
+      "issuedDayOffset": -3,
+      "expiresDayOffset": 11,
+      "stages": ["emergence", "vegetative"],
+      "summary": "Fall armyworm egg masses reported on young maize in the lower parts of the zone; scout whorls twice a week.",
+      "source": "County plant-health bulletin wk39 (synthetic)",
+      "recommendedAction": "scout"
+    },
+    {
+      "alertId": "PA-2026-38-04",
+      "agroZoneId": "KE-HL-UPPER",
+      "pest": "potato_tuber_moth",
+      "crop": "potato",
+      "severity": "low",
+      "issuedDayOffset": -8,
+      "expiresDayOffset": 6,
+      "stages": ["maturation", "harvested"],
+      "summary": "Tuber moth catches rising in pheromone traps near stores; hill up ridges and harvest promptly once mature.",
+      "source": "County plant-health bulletin wk38 (synthetic)",
+      "recommendedAction": "scout"
+    }
+  ]
+}

@@ -1,0 +1,659 @@
+{
+ "office": {
+  "officeId": "OFF-001",
+  "name": "Ol Kalou Ward Agricultural Extension Office",
+  "country": "Kenya",
+  "officers": [
+   {
+    "name": "Amina Wekesa",
+    "role": "Ward Extension Officer"
+   },
+   {
+    "name": "Joseph Kariuki",
+    "role": "Agricultural Officer"
+   }
+  ]
+ },
+ "agroZones": [
+  {
+   "agroZoneId": "KE-HL-UPPER",
+   "name": "Upper highland potato zone (2,100\u20132,600 m)",
+   "lat": -0.39,
+   "lon": 36.87,
+   "timezone": "Africa/Nairobi",
+   "seasons": {
+    "potato": [
+     {
+      "name": "Long rains",
+      "plantStart": "03-15",
+      "plantEnd": "04-30"
+     },
+     {
+      "name": "Short rains",
+      "plantStart": "09-15",
+      "plantEnd": "10-31"
+     }
+    ],
+    "maize": [
+     {
+      "name": "Long rains",
+      "plantStart": "03-01",
+      "plantEnd": "04-15"
+     }
+    ]
+   }
+  }
+ ],
+ "farms": [
+  {
+   "farmId": "F-001",
+   "name": "Nyandarua Demo Cluster",
+   "region": "Kenyan highlands (synthetic demo cluster)",
+   "crop": "potato",
+   "agroZoneId": "KE-HL-UPPER",
+   "lat": -0.39,
+   "lon": 36.87,
+   "elevationM": 2300,
+   "totalHa": 9.6,
+   "today": "2026-09-27",
+   "officeId": "OFF-001",
+   "notes": "One demo farm cluster: six plots, six households, one ward extension office. Values are synthetic on the real farmSensor/farmZone schema shape."
+  }
+ ],
+ "plots": [
+  {
+   "zoneId": "A1",
+   "displayName": "North Terrace",
+   "grid": [
+    0,
+    0
+   ],
+   "status": "nominal",
+   "source": {
+    "soil": "agrifusion_assessment",
+    "crop": "farmwise_snapshot",
+    "model": "synthetic"
+   },
+   "lastUpdateTime": "2026-09-27T08:40:00Z",
+   "atmosphere": {
+    "ambientTemperature": 19.4,
+    "relativeHumidity": 68,
+    "precipitation": 2.1
+   },
+   "soil": {
+    "soilMoisture": 27.5,
+    "soilTemperature": 17.8,
+    "soilEC": 0.42,
+    "soilOrganicCarbon": 2.6,
+    "nitrogenLevel": 0.22,
+    "phosphorusLevel": 21,
+    "potassiumLevel": 0.61,
+    "aluminiumLevel": 0.4,
+    "soilTextureClass": "loam"
+   },
+   "soilPH": 6.1,
+   "crop": {
+    "ndvi": 0.74,
+    "evi": 0.61,
+    "cloudCover": 12,
+    "growthStage": "tuber_bulking",
+    "daysAfterPlanting": 62,
+    "accumulatedGDD": 905
+   },
+   "agronomy": {
+    "variety": "Shangi",
+    "plantingDate": "2026-07-27",
+    "areaHa": 1.8,
+    "substorTuberFreshYield": 31.5,
+    "substorLeafAreaIndex": 3.9,
+    "simcastBlightRisk": "low",
+    "simcastSprayRecommended": false
+   },
+   "series": {
+    "soilMoisture": [
+     29,
+     28.2,
+     27.9,
+     28.6,
+     27.1,
+     27.8,
+     27.5
+    ],
+    "soilPH": [
+     6.1,
+     6.1,
+     6,
+     6.1,
+     6.1,
+     6.1,
+     6.1
+    ],
+    "ndvi": [
+     0.69,
+     0.7,
+     0.71,
+     0.72,
+     0.72,
+     0.73,
+     0.74
+    ],
+    "accumulatedGDD": [
+     815,
+     830,
+     846,
+     861,
+     876,
+     890,
+     905
+    ]
+   },
+   "insight": "Healthy canopy, soil and moisture in range. Keep the current plan.",
+   "plotId": "A1",
+   "farmId": "F-001",
+   "householdId": "H-001",
+   "householdName": "Wanjiru Njoroge",
+   "contactMethod": "sms",
+   "lastVisit": {
+    "date": "2026-09-21",
+    "note": "Canopy closed well; discussed top-dress timing.",
+    "officer": "Amina Wekesa"
+   },
+   "agroZoneId": "KE-HL-UPPER"
+  },
+  {
+   "zoneId": "A2",
+   "displayName": "Hillside Block",
+   "grid": [
+    1,
+    0
+   ],
+   "status": "warning",
+   "source": {
+    "soil": "agrifusion_assessment",
+    "crop": "farmwise_snapshot",
+    "model": "synthetic"
+   },
+   "lastUpdateTime": "2026-09-27T08:32:00Z",
+   "atmosphere": {
+    "ambientTemperature": 18.7,
+    "relativeHumidity": 71,
+    "precipitation": 2.4
+   },
+   "soil": {
+    "soilMoisture": 24.1,
+    "soilTemperature": 17.1,
+    "soilEC": 0.21,
+    "soilOrganicCarbon": 1.5,
+    "nitrogenLevel": 0.13,
+    "phosphorusLevel": 9,
+    "potassiumLevel": 0.29,
+    "aluminiumLevel": 1.45,
+    "soilTextureClass": "clay_loam"
+   },
+   "soilPH": 5.1,
+   "crop": {
+    "ndvi": 0.58,
+    "evi": 0.48,
+    "cloudCover": 14,
+    "growthStage": "tuber_initiation",
+    "daysAfterPlanting": 48,
+    "accumulatedGDD": 690
+   },
+   "agronomy": {
+    "variety": "Kenya Mpya",
+    "plantingDate": "2026-08-10",
+    "areaHa": 1.4,
+    "substorTuberFreshYield": 19.2,
+    "substorLeafAreaIndex": 2.3,
+    "simcastBlightRisk": "low",
+    "simcastSprayRecommended": false
+   },
+   "series": {
+    "soilMoisture": [
+     25,
+     24.6,
+     24.9,
+     24.2,
+     24.5,
+     24,
+     24.1
+    ],
+    "soilPH": [
+     5.3,
+     5.3,
+     5.2,
+     5.2,
+     5.2,
+     5.1,
+     5.1
+    ],
+    "ndvi": [
+     0.6,
+     0.6,
+     0.59,
+     0.59,
+     0.58,
+     0.58,
+     0.58
+    ],
+    "accumulatedGDD": [
+     604,
+     619,
+     633,
+     647,
+     662,
+     676,
+     690
+    ]
+   },
+   "insight": "Soil is acidic (pH 5.1) with high aluminium. Lime is advised; low P and K are holding growth back.",
+   "plotId": "A2",
+   "farmId": "F-001",
+   "householdId": "H-002",
+   "householdName": "Peter Kamau",
+   "contactMethod": "ussd",
+   "lastVisit": {
+    "date": "2026-09-18",
+    "note": "Lab result shows pH 5.1; farmer has not limed in 3 seasons.",
+    "officer": "Amina Wekesa"
+   },
+   "agroZoneId": "KE-HL-UPPER"
+  },
+  {
+   "zoneId": "A3",
+   "displayName": "East Valley",
+   "grid": [
+    2,
+    0
+   ],
+   "status": "critical",
+   "source": {
+    "soil": "agrifusion_assessment",
+    "crop": "farmwise_snapshot",
+    "model": "synthetic"
+   },
+   "lastUpdateTime": "2026-09-27T08:45:00Z",
+   "atmosphere": {
+    "ambientTemperature": 16.9,
+    "relativeHumidity": 92,
+    "precipitation": 14.2
+   },
+   "soil": {
+    "soilMoisture": 36.4,
+    "soilTemperature": 16.2,
+    "soilEC": 0.51,
+    "soilOrganicCarbon": 2.9,
+    "nitrogenLevel": 0.25,
+    "phosphorusLevel": 18,
+    "potassiumLevel": 0.55,
+    "aluminiumLevel": 0.5,
+    "soilTextureClass": "clay_loam"
+   },
+   "soilPH": 5.9,
+   "crop": {
+    "ndvi": 0.52,
+    "evi": 0.43,
+    "cloudCover": 38,
+    "growthStage": "tuber_bulking",
+    "daysAfterPlanting": 71,
+    "accumulatedGDD": 1040
+   },
+   "agronomy": {
+    "variety": "Dutch Robjin",
+    "plantingDate": "2026-07-18",
+    "areaHa": 1.6,
+    "substorTuberFreshYield": 22.8,
+    "substorLeafAreaIndex": 2.8,
+    "simcastBlightRisk": "high",
+    "simcastSprayRecommended": true
+   },
+   "series": {
+    "soilMoisture": [
+     30,
+     31.2,
+     33.5,
+     34.1,
+     35.2,
+     36,
+     36.4
+    ],
+    "soilPH": [
+     5.9,
+     5.9,
+     5.9,
+     5.9,
+     5.9,
+     5.9,
+     5.9
+    ],
+    "ndvi": [
+     0.66,
+     0.65,
+     0.62,
+     0.6,
+     0.57,
+     0.54,
+     0.52
+    ],
+    "accumulatedGDD": [
+     950,
+     966,
+     981,
+     996,
+     1011,
+     1026,
+     1040
+    ]
+   },
+   "insight": "Late-blight weather: humidity above 90% after heavy rain, and the canopy is losing greenness. Spray is recommended.",
+   "plotId": "A3",
+   "farmId": "F-001",
+   "householdId": "H-003",
+   "householdName": "Grace Achieng",
+   "contactMethod": "sms",
+   "lastVisit": {
+    "date": "2026-09-25",
+    "note": "Lower leaves wet all morning after rain; advised scouting.",
+    "officer": "Amina Wekesa"
+   },
+   "agroZoneId": "KE-HL-UPPER"
+  },
+  {
+   "zoneId": "B1",
+   "displayName": "River Flats",
+   "grid": [
+    0,
+    1
+   ],
+   "status": "nominal",
+   "source": {
+    "soil": "agrifusion_assessment",
+    "crop": "farmwise_snapshot",
+    "model": "synthetic"
+   },
+   "lastUpdateTime": "2026-09-27T08:38:00Z",
+   "atmosphere": {
+    "ambientTemperature": 20.3,
+    "relativeHumidity": 64,
+    "precipitation": 1.2
+   },
+   "soil": {
+    "soilMoisture": 25.8,
+    "soilTemperature": 19.2,
+    "soilEC": 0.38,
+    "soilOrganicCarbon": 2.2,
+    "nitrogenLevel": 0.18,
+    "phosphorusLevel": 24,
+    "potassiumLevel": 0.72,
+    "aluminiumLevel": 0.35,
+    "soilTextureClass": "sandy_loam"
+   },
+   "soilPH": 6.4,
+   "crop": {
+    "ndvi": 0.47,
+    "evi": 0.39,
+    "cloudCover": 8,
+    "growthStage": "maturation",
+    "daysAfterPlanting": 96,
+    "accumulatedGDD": 1410
+   },
+   "agronomy": {
+    "variety": "Tigoni",
+    "plantingDate": "2026-06-23",
+    "areaHa": 2.2,
+    "substorTuberFreshYield": 34.6,
+    "substorLeafAreaIndex": 1.6,
+    "simcastBlightRisk": "none",
+    "simcastSprayRecommended": false
+   },
+   "series": {
+    "soilMoisture": [
+     27,
+     26.5,
+     26.8,
+     26.1,
+     25.9,
+     26,
+     25.8
+    ],
+    "soilPH": [
+     6.4,
+     6.4,
+     6.4,
+     6.4,
+     6.4,
+     6.4,
+     6.4
+    ],
+    "ndvi": [
+     0.61,
+     0.58,
+     0.56,
+     0.53,
+     0.51,
+     0.49,
+     0.47
+    ],
+    "accumulatedGDD": [
+     1310,
+     1327,
+     1344,
+     1361,
+     1377,
+     1394,
+     1410
+    ]
+   },
+   "insight": "Crop is maturing on schedule. Falling NDVI is normal senescence. Plan harvest in about 2 weeks.",
+   "plotId": "B1",
+   "farmId": "F-001",
+   "householdId": "H-004",
+   "householdName": "Samuel Mwangi",
+   "contactMethod": "visit",
+   "lastVisit": {
+    "date": "2026-09-15",
+    "note": "Harvest labour booked for early October.",
+    "officer": "Amina Wekesa"
+   },
+   "agroZoneId": "KE-HL-UPPER"
+  },
+  {
+   "zoneId": "B2",
+   "displayName": "South Slope",
+   "grid": [
+    1,
+    1
+   ],
+   "status": "warning",
+   "source": {
+    "soil": "agrifusion_assessment",
+    "crop": "farmwise_snapshot",
+    "model": "synthetic"
+   },
+   "lastUpdateTime": "2026-09-27T08:41:00Z",
+   "atmosphere": {
+    "ambientTemperature": 23.6,
+    "relativeHumidity": 49,
+    "precipitation": 0
+   },
+   "soil": {
+    "soilMoisture": 13.2,
+    "soilTemperature": 23.1,
+    "soilEC": 0.66,
+    "soilOrganicCarbon": 1.3,
+    "nitrogenLevel": 0.16,
+    "phosphorusLevel": 15,
+    "potassiumLevel": 0.47,
+    "aluminiumLevel": 0.6,
+    "soilTextureClass": "sandy_loam"
+   },
+   "soilPH": 6.3,
+   "crop": {
+    "ndvi": 0.55,
+    "evi": 0.45,
+    "cloudCover": 3,
+    "growthStage": "tuber_initiation",
+    "daysAfterPlanting": 41,
+    "accumulatedGDD": 610
+   },
+   "agronomy": {
+    "variety": "Asante",
+    "plantingDate": "2026-08-17",
+    "areaHa": 1.5,
+    "substorTuberFreshYield": 17.4,
+    "substorLeafAreaIndex": 2.1,
+    "simcastBlightRisk": "none",
+    "simcastSprayRecommended": false
+   },
+   "series": {
+    "soilMoisture": [
+     21,
+     19.4,
+     17.9,
+     16.5,
+     15.2,
+     14.1,
+     13.2
+    ],
+    "soilPH": [
+     6.3,
+     6.3,
+     6.3,
+     6.3,
+     6.3,
+     6.3,
+     6.3
+    ],
+    "ndvi": [
+     0.62,
+     0.61,
+     0.6,
+     0.58,
+     0.57,
+     0.56,
+     0.55
+    ],
+    "accumulatedGDD": [
+     520,
+     535,
+     550,
+     565,
+     580,
+     595,
+     610
+    ]
+   },
+   "insight": "Dry spell: soil moisture fell from 21% to 13% in a week during tuber initiation. Irrigate now.",
+   "plotId": "B2",
+   "farmId": "F-001",
+   "householdId": "H-005",
+   "householdName": "Mary Wairimu",
+   "contactMethod": "sms",
+   "lastVisit": {
+    "date": "2026-09-20",
+    "note": "No irrigation access beyond a shared pump; dry spell worry.",
+    "officer": "Amina Wekesa"
+   },
+   "agroZoneId": "KE-HL-UPPER"
+  },
+  {
+   "zoneId": "B3",
+   "displayName": "Seedbed West",
+   "grid": [
+    2,
+    1
+   ],
+   "status": "offline",
+   "source": {
+    "soil": "agrifusion_assessment",
+    "crop": "farmwise_snapshot",
+    "model": "synthetic"
+   },
+   "lastUpdateTime": "2026-09-24T06:10:00Z",
+   "atmosphere": {
+    "ambientTemperature": 18.2,
+    "relativeHumidity": 70,
+    "precipitation": 3
+   },
+   "soil": {
+    "soilMoisture": 29,
+    "soilTemperature": 16.5,
+    "soilEC": 0.33,
+    "soilOrganicCarbon": 2.4,
+    "nitrogenLevel": 0.2,
+    "phosphorusLevel": 19,
+    "potassiumLevel": 0.58,
+    "aluminiumLevel": 0.45,
+    "soilTextureClass": "loam"
+   },
+   "soilPH": 6,
+   "crop": {
+    "ndvi": 0.41,
+    "evi": 0.34,
+    "cloudCover": 22,
+    "growthStage": "emergence",
+    "daysAfterPlanting": 18,
+    "accumulatedGDD": 190
+   },
+   "agronomy": {
+    "variety": "Shangi",
+    "plantingDate": "2026-09-09",
+    "areaHa": 1.1,
+    "substorTuberFreshYield": 28,
+    "substorLeafAreaIndex": 1.2,
+    "simcastBlightRisk": "low",
+    "simcastSprayRecommended": false
+   },
+   "series": {
+    "soilMoisture": [
+     30,
+     29.8,
+     29.4,
+     29,
+     29,
+     29,
+     29
+    ],
+    "soilPH": [
+     6,
+     6,
+     6,
+     6,
+     6,
+     6,
+     6
+    ],
+    "ndvi": [
+     0.3,
+     0.33,
+     0.36,
+     0.39,
+     0.41,
+     0.41,
+     0.41
+    ],
+    "accumulatedGDD": [
+     120,
+     138,
+     155,
+     172,
+     190,
+     190,
+     190
+    ]
+   },
+   "insight": "Soil probe offline for 3 days, so these readings are stale. Check the probe battery before trusting them.",
+   "plotId": "B3",
+   "farmId": "F-001",
+   "householdId": "H-006",
+   "householdName": "Joseph Otieno",
+   "contactMethod": "ussd",
+   "lastVisit": {
+    "date": "2026-09-23",
+    "note": "Probe battery flat since 24 Sept; farmer to replace.",
+    "officer": "Amina Wekesa"
+   },
+   "agroZoneId": "KE-HL-UPPER"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+  "_note": "Seeded zone rainfall so the demo and the evals are reproducible without network. Shaped like Open-Meteo daily output. dayOffset relative to the fixture 'today'. With AGRITWIN_LIVE_WEATHER=1 the ingest_weather tool replaces these with live Open-Meteo values for the farm coordinates.",
+  "source": "seeded rainfall cache (CHIRPS-shaped, synthetic)",
+  "zones": {
+    "KE-HL-UPPER": {
+      "observed": [
+        {"dayOffset": -7, "mm": 0.0, "tmax": 22.1, "tmin": 9.8},
+        {"dayOffset": -6, "mm": 0.0, "tmax": 23.0, "tmin": 9.1},
+        {"dayOffset": -5, "mm": 2.1, "tmax": 21.4, "tmin": 10.2},
+        {"dayOffset": -4, "mm": 0.4, "tmax": 22.6, "tmin": 9.9},
+        {"dayOffset": -3, "mm": 0.0, "tmax": 23.8, "tmin": 10.4},
+        {"dayOffset": -2, "mm": 9.8, "tmax": 19.2, "tmin": 11.0},
+        {"dayOffset": -1, "mm": 14.2, "tmax": 17.9, "tmin": 11.6}
+      ],
+      "forecast": [
+        {"dayOffset": 0, "mm": 6.1, "probability": 70, "tmax": 18.5, "tmin": 11.2},
+        {"dayOffset": 1, "mm": 12.4, "probability": 80, "tmax": 18.0, "tmin": 11.0},
+        {"dayOffset": 2, "mm": 3.0, "probability": 40, "tmax": 20.1, "tmin": 10.6},
+        {"dayOffset": 3, "mm": 0.0, "probability": 10, "tmax": 22.3, "tmin": 9.7},
+        {"dayOffset": 4, "mm": 0.0, "probability": 5, "tmax": 23.1, "tmin": 9.4},
+        {"dayOffset": 5, "mm": 1.2, "probability": 20, "tmax": 22.0, "tmin": 10.0},
+        {"dayOffset": 6, "mm": 0.0, "probability": 10, "tmax": 22.8, "tmin": 9.6}
+      ]
+    }
+  }
+}
