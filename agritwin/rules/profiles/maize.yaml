@@ -1,0 +1,52 @@
+# Maize profile: proves the engine is crop-agnostic. Thresholds are FAO/KALRO rules of thumb;
+# adjust per agroclimatic zone before any real use.
+crop: maize
+version: 1
+label: Maize (rain-fed)
+stages: [unplanted, emergence, vegetative, tasseling, grain_fill, maturation, harvested]
+drought_sensitive_stages: [tasseling, grain_fill]
+maturity_days: 120
+stale_hours: 48
+thresholds:
+  moisture_dry_pct: 15
+  moisture_waterlogged_pct: 36
+  ph_min: 5.8
+  ph_max: 7.5
+  aluminium_toxic_cmol: 1.0
+  nitrogen_low_pct: 0.12
+  phosphorus_low_ppm: 10
+  potassium_low_cmol: 0.30
+  organic_carbon_low_pct: 1.2
+  ndvi_weak: 0.50
+  blight_humidity_pct: 95       # maize has no late blight; keep the wet-weather fungal rule conservative
+  blight_temp_c: [15, 30]
+  blight_rain_24h_mm: 10
+  blight_rain_7d_mm: 40
+  rain_blocks_spray_24h_mm: 10
+  rain_covers_irrigation_3d_mm: 20
+  planting_onset_7d_mm: 25
+  planting_forecast_7d_mm: 20
+pests:
+  fall_armyworm:
+    stages: [emergence, vegetative]
+    action: scout
+  maize_lethal_necrosis:
+    stages: [vegetative, tasseling]
+    action: scout
+  stalk_borer:
+    stages: [vegetative, tasseling]
+    action: scout
+messages:
+  spray: "Wet-weather fungal risk on {plot}: humidity {relativeHumidity}% and {precipitation} mm rain in 24 h. Apply a registered fungicide within 24 h."
+  irrigate: "{plot} soil moisture is {soilMoisture}% VWC, below the {moisture_dry_pct}% floor during {stage}. Irrigate within a day; no useful rain is forecast."
+  hold_irrigation: "{plot} is dry ({soilMoisture}% VWC) but {forecast3Mm} mm of rain is forecast in the next 3 days. Hold irrigation and re-check after the rain."
+  hold_spray: "{plot} has wet-weather fungal risk but {forecast24Mm} mm of rain is forecast tomorrow. Hold the spray for the first dry morning."
+  hold_waterlogged: "{plot} is waterlogged ({soilMoisture}% VWC). Do not irrigate; open drains."
+  plant: "Season onset confirmed for {plot}: {last7Mm} mm fell in the last 7 days and {forecast7Mm} mm is forecast. Plant {variety} this week."
+  hold_plant: "Hold planting on {plot}: only {last7Mm} mm fell in the last 7 days and {forecast7Mm} mm is forecast; wait for the onset."
+  harvest: "{plot} is at maturation, day {daysAfterPlanting}. Plan harvest once cobs dry down."
+  lime: "{plot} soil pH is {soilPH} (below {ph_min}). Apply agricultural lime between seasons after a lab test."
+  fertilise: "{plot} nutrients are low ({nutrients}). Top-dress as advised at the next visit."
+  scout: "{plot} needs scouting: {reason}."
+  check_sensor: "{plot} readings are stale (probe last reported {lastUpdateTime}). Check the probe before acting on these numbers."
+  none: "{plot} is in range this week. No action needed; next check in 7 days."

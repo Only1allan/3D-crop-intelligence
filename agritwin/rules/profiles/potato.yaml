@@ -1,0 +1,53 @@
+# Potato (Kenyan highlands) advisory profile. Thresholds are the rules of thumb the v0 twin
+# shipped with (status.js / offline.js), now stated once, versioned, and cited by rule id.
+crop: potato
+version: 1
+label: Potato (highland, rain-fed)
+stages: [unplanted, emergence, tuber_initiation, tuber_bulking, maturation, harvested]
+drought_sensitive_stages: [tuber_initiation, tuber_bulking]
+maturity_days: 100
+stale_hours: 48
+thresholds:
+  moisture_dry_pct: 18          # % VWC below which the crop is water-stressed
+  moisture_waterlogged_pct: 34  # above: rot and blight risk, do not irrigate
+  ph_min: 5.5
+  ph_max: 7.0
+  aluminium_toxic_cmol: 1.0
+  nitrogen_low_pct: 0.15
+  phosphorus_low_ppm: 12
+  potassium_low_cmol: 0.35
+  organic_carbon_low_pct: 1.5
+  ndvi_weak: 0.55
+  blight_humidity_pct: 90       # RH sustained above this with mild temps = late-blight weather
+  blight_temp_c: [10, 25]
+  blight_rain_24h_mm: 5
+  blight_rain_7d_mm: 20
+  rain_blocks_spray_24h_mm: 10  # forecast rain that would wash a protectant off
+  rain_covers_irrigation_3d_mm: 15
+  planting_onset_7d_mm: 20      # season onset: this much rain in the last 7 days ...
+  planting_forecast_7d_mm: 15   # ... and this much more forecast
+pests:
+  late_blight:
+    stages: [emergence, tuber_initiation, tuber_bulking]
+    action: spray
+  potato_tuber_moth:
+    stages: [maturation, harvested]
+    action: scout
+  aphids:
+    stages: [emergence, tuber_initiation]
+    action: scout
+messages:
+  # Short, SMS-friendly templates for the deterministic drafter. {placeholders} are filled from citations.
+  spray: "Late-blight weather on {plot}: humidity {relativeHumidity}% and {precipitation} mm rain in 24 h. Apply a protectant fungicide within 24 h and scout lower leaves for dark wet lesions."
+  irrigate: "{plot} soil moisture is {soilMoisture}% VWC, below the {moisture_dry_pct}% floor during {stage}. Irrigate within a day; no useful rain is forecast."
+  hold_irrigation: "{plot} is dry ({soilMoisture}% VWC) but {forecast3Mm} mm of rain is forecast in the next 3 days. Hold irrigation and re-check after the rain."
+  hold_spray: "{plot} has late-blight weather but {forecast24Mm} mm of rain is forecast tomorrow, which would wash a spray off. Hold the spray for the first dry morning and scout daily."
+  hold_waterlogged: "{plot} is waterlogged ({soilMoisture}% VWC). Do not irrigate; open drains and scout for rot."
+  plant: "Season onset confirmed for {plot}: {last7Mm} mm fell in the last 7 days and {forecast7Mm} mm is forecast. Plant {variety} this week."
+  hold_plant: "Hold planting on {plot}: only {last7Mm} mm fell in the last 7 days and {forecast7Mm} mm is forecast; wait for the onset."
+  harvest: "{plot} is at maturation, day {daysAfterPlanting}. Plan harvest in about 2 weeks once vines die back and skins set."
+  lime: "{plot} soil pH is {soilPH} (below {ph_min}). Apply agricultural lime between seasons, 1 to 2 t/ha after a lab test."
+  fertilise: "{plot} nutrients are low ({nutrients}). Top-dress as advised at the next visit."
+  scout: "{plot} needs scouting: {reason}."
+  check_sensor: "{plot} readings are stale (probe last reported {lastUpdateTime}). Check the probe before acting on these numbers."
+  none: "{plot} is in range this week. No action needed; next check in 7 days."
