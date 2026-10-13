@@ -5,7 +5,7 @@ __pycache__/
 .ruff_cache/
 data/*.db
 data/*.db-*
-data/audit.jsonl
+data/*.jsonl
 .env
 .env.local
 web/.env.local
