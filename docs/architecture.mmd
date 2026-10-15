@@ -1,0 +1,74 @@
+%% Farmverse (AgriTwin) — system architecture
+%% Agents, models, MCP client/server, tools/resources, external APIs,
+%% data sources, human-in-the-loop, and overall data flow.
+flowchart TB
+    subgraph DS["Data sources"]
+        PROBE["Plot probes & soil-lab sheets\n(farmSensor / farmZone schema)"]
+        OM["Open-Meteo API\n(rain history + forecast, no key)"]
+        PEST["County pest bulletins\n(synthetic fixture)"]
+        FIX["Demo fixture seed\n(6 plots, 6 households)"]
+    end
+
+    subgraph STORE["Twin store (SQLite + JSONL)"]
+        DB[("agritwin.db\nfarms, plots, signals,\nadvisories, decisions")]
+        AUDIT[("audit.jsonl\nappend-only tool log")]
+    end
+
+    subgraph MCP1["AgriTwin MCP server (built, FastMCP)"]
+        TOOLS["21 tools\ningest_* · get_* ·\ncheck_advisory_rules ·\ndraft_advisory (citation guard) ·\nflag_plot · schedule_follow_up ·\nrecord_officer_decision (gated)"]
+        RES["4 resources + 1 prompt\ntwin reads, officer prompt"]
+    end
+
+    subgraph MCP2["chuk-mcp-open-meteo (borrowed, IBM)"]
+        WX["Forecast / history / geocoding tools\nstdio transport"]
+    end
+
+    subgraph AGENT["LangGraph agent (one run per plot)"]
+        GATHER["gather\n3 read tools + 2nd-opinion forecast\nretry once · self-ingest if no rain"]
+        CHECK["cross_check\nrule engine = only source of numbers"]
+        DRAFT["draft\nmodel phrases evidence pack\nfiles via file_draft"]
+        GATE{"await_officer\ninterrupt() — paused"}
+        FINAL["finalize\nlog outcome · schedule follow-up"]
+        MISS["missing_data terminal\nflag plot, no advisory"]
+    end
+
+    subgraph LLM["Drafting models (AGRITWIN_MODEL_PROVIDER=auto)"]
+        OLL["Ollama on-prem\nQwen3 (data stays in-country)"]
+        OR["OpenRouter hosted\nGemma 4 / Nemotron 3"]
+        ANT["Anthropic\nfrontier comparison"]
+        TPL["Template drafter\nno-model fallback (labelled)"]
+    end
+
+    subgraph HUMAN["Human-in-the-loop"]
+        OFF["Named officer\n(Amina / Joseph)\napprove → simulated SMS/USSD/visit\nreject → reason logged"]
+    end
+
+    subgraph UI["Officer console (React + Vite)"]
+        TWIN["3D farm twin + Advisory tab\nclick plot · read citations"]
+        DESK["/desk queue\nfollow-ups · flags · audit timeline"]
+    end
+
+    PROBE & PEST & FIX -->|"ingest_plot_readings\nregister_farm"| TOOLS
+    OM -->|"ingest_weather adapter\n(inside AgriTwin server)"| TOOLS
+    TOOLS --> DB
+    TOOLS --> AUDIT
+
+    GATHER -->|"MCP streamable HTTP\nloopback /mcp/ (actor=agent)"| TOOLS
+    GATHER -->|"MCP stdio"| WX
+    WX -->|"2nd opinion\nagree/disagree"| GATHER
+    GATHER --> CHECK --> DRAFT
+    GATHER -.->|"stale / missing data"| MISS
+    DRAFT <-->|"evidence pack + file_draft\ncitation-guard reject → self-correct"| OLL
+    DRAFT <--> OR
+    DRAFT <--> ANT
+    DRAFT <--> TPL
+    DRAFT --> GATE
+    GATE -->|"resume with decision"| FINAL
+    OFF -->|"approve / reject by name"| GATE
+
+    TWIN <-->|"REST + SSE /api/* (actor=api)"| TOOLS
+    DESK <-->|"REST + SSE /api/*"| TOOLS
+    FINAL -->|"simulated dispatch record"| DB
+    OFF -->|"reads draft + citations"| TWIN
+    OFF -->|"clears queue"| DESK
+    DB -->|"served to console"| TWIN & DESK

@@ -20,7 +20,7 @@ export function Compare() {
           <Reveal delay={0.08}><h2 className="h2">Assistants talk to farmers.<br /><span className="grad-text">We back the officer.</span></h2></Reveal>
         </div>
         <Reveal className="cmp card">
-          <div className="cmp-head"><span>Farmer-facing chatbots</span><span className="accent">Crop Intelligence · Advisory Desk</span></div>
+          <div className="cmp-head"><span>Farmer-facing chatbots</span><span className="accent">FarmVerse · Advisory Desk</span></div>
           {ROWS.map(([a, b], i) => (
             <motion.div key={a} className="cmp-row" initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
               <span className="cmp-a"><X size={16} />{a}</span>
@@ -36,9 +36,8 @@ export function Compare() {
 const TRUTH = [
   { icon: FlaskConical, t: 'Plot values are synthetic, on the real schema', d: 'Soil, pH, NDVI and crop numbers are demo data keyed by the real farmSensor / farmZone attribute names, so a real probe can drop in without renaming. No sensor bluffing.' },
   { icon: CloudRain, t: 'Rainfall is live', d: 'Past 7 days and the 7-day forecast come from Open-Meteo for the farm’s coordinates on every agent run, through a borrowed MCP server.' },
-  { icon: Bug, t: 'Pest bulletins are synthetic', d: 'The late-blight bulletin is a hand-written fixture shaped like a county plant-health alert. A real feed is a data adapter away.' },
+  { icon: Bug, t: 'Pest bulletins are synthetic', d: 'The late-blight bulletin is a hand-written fixture shaped like a county plant-health alert.' },
   { icon: Send, t: 'Dispatch is simulated', d: 'Approving a draft writes a labelled “simulated dispatch” record. No SMS or USSD message is actually sent to anyone.' },
-  { icon: ScanLine, t: 'The 3D scans are public captures', d: 'The Gaussian-splat and Pheno4D scenes on the Lab page prove the 3D pipeline on real data; they are not this farm.' },
 ]
 export function Honesty() {
   return (

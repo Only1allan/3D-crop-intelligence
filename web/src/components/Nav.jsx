@@ -9,8 +9,7 @@ const LINKS = [
   { to: '/#solution', label: 'Solution' },
   { to: '/#features', label: 'Features' },
   { to: '/desk', label: 'Desk' },
-  { to: '/lab', label: 'Real 3D data' },
-  { to: '/#honesty', label: 'What is real' },
+  { to: '/credits', label: 'Credits' },
 ]
 
 export default function Nav() {

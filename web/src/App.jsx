@@ -6,7 +6,6 @@ import { TwinProvider } from './state/TwinContext'
 
 const Twin = lazy(() => import('./pages/Twin'))
 const Desk = lazy(() => import('./pages/Desk'))
-const Lab = lazy(() => import('./pages/Lab'))
 const Credits = lazy(() => import('./pages/Credits'))
 
 function ScrollManager() {
@@ -30,7 +29,6 @@ export default function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/twin" element={<Twin />} />
           <Route path="/desk" element={<Desk />} />
-          <Route path="/lab" element={<Lab />} />
           <Route path="/credits" element={<Credits />} />
           <Route path="*" element={<Landing />} />
         </Routes>

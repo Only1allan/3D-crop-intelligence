@@ -1,4 +1,4 @@
-# ARCHITECTURE.md — Crop Intelligence · Advisory Desk (AgriTwin)
+# ARCHITECTURE.md — FarmVerse Crop Intelligence
 
 One page on the agent's shape, which MCP servers we built versus borrowed, and why.
 

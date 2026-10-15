@@ -73,7 +73,7 @@ export default function Hero({ onPlay }) {
       ))}
       <div className="container hero-inner">
         <motion.div className="hero-copy" initial="h" animate="s" variants={{ s: { transition: { staggerChildren: 0.12 } } }}>
-          <motion.span className="eyebrow" variants={fade}>Crop Intelligence · Advisory Desk</motion.span>
+          <motion.span className="eyebrow" variants={fade}>FarmVerse Crop Intelligence</motion.span>
           <motion.h1 className="h1" variants={fade}>Your office's farms, digitized.<br /><span className="grad-text">Advisories drafted, never sent without you.</span></motion.h1>
           <motion.p className="lead" variants={fade}>
             One digital twin per farm the extension office serves. An agent drafts a climate-smart advisory for every plot, with a citation on every number.
@@ -82,7 +82,6 @@ export default function Hero({ onPlay }) {
           <motion.div className="hero-ctas" variants={fade}>
             <Link to="/twin" className="btn btn-primary">Open the twin <ArrowRight size={18} className="arrow" /></Link>
             <Link to="/desk" className="btn btn-ghost">Open the desk</Link>
-            <button className="btn btn-ghost" onClick={onPlay}><Play size={16} /> 3D scan</button>
           </motion.div>
           <motion.div className="hero-trust" variants={fade}>
             <span><b>LangGraph</b> agent</span>

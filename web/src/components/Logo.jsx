@@ -16,7 +16,7 @@ export default function Logo({ size = 28, mark = false }) {
       {icon}
       <span style={{ lineHeight: 1.05, fontSize: 15 }}>
         Crop<span style={{ color: 'var(--green)' }}>Intelligence</span>
-        <span style={{ display: 'block', fontSize: 10, fontWeight: 500, letterSpacing: '.18em', color: 'var(--text-3)', textTransform: 'uppercase' }}>Advisory Desk</span>
+        <span style={{ display: 'block', fontSize: 10, fontWeight: 500, letterSpacing: '.18em', color: 'var(--text-3)', textTransform: 'uppercase' }}>FarmVerse</span>
       </span>
     </span>
   )

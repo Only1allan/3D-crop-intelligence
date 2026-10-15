@@ -7,7 +7,6 @@ import Problem from '../components/landing/Problem'
 import Solution from '../components/landing/Solution'
 import Features from '../components/landing/Features'
 import Metrics from '../components/landing/Metrics'
-import RealData from '../components/landing/RealData'
 import { Compare, Honesty, Roadmap, FinalCTA } from '../components/landing/Closing'
 import VideoModal from '../components/landing/VideoModal'
 import '../components/landing/landing.css'
@@ -24,7 +23,6 @@ export default function Landing() {
         <Solution />
         <Features />
         <Metrics />
-        <RealData />
         <Compare />
         <Honesty />
         <Roadmap />

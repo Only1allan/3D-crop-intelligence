@@ -44,7 +44,7 @@ async def lifespan(app: FastAPI):
         yield
 
 
-app = FastAPI(title="AgriTwin Advisory Desk API", version=__version__, lifespan=lifespan)
+app = FastAPI(title="FarmVerse Advisory Desk API", version=__version__, lifespan=lifespan)
 app.mount("/mcp", mcp_app)
 
 
